@@ -59,8 +59,17 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .nav__burger[aria-expanded="true"] i:first-child { transform: rotate(45deg); }
 .nav__burger[aria-expanded="true"] i:last-child { transform: rotate(-45deg); }
 
-.menu { position: fixed; inset: 0; z-index: 40; background: var(--pared); color: var(--tinta); display: flex; flex-direction: column; justify-content: center; gap: 3rem; padding: 6rem var(--gutter) 3rem; clip-path: ellipse(0% 0% at 100% 0%); transition: clip-path .55s cubic-bezier(.7, 0, .2, 1); }
-.menu.is-abierto { clip-path: ellipse(190% 130% at 100% 0%); }
+/* the screen fills like a glass: a caña over a dark page, a coffee over a light one */
+.menu { position: fixed; inset: 0; z-index: 40; overflow: hidden; color: var(--txt); }
+.menu[data-bebida="cana"] { --liq: var(--pared); --esp: var(--crema); --txt: var(--tinta); --bur: var(--crema); }
+.menu[data-bebida="cafe"] { --liq: var(--noche); --esp: #b98a3c; --txt: var(--oro); --bur: #b98a3c; }
+.menu__bebida { position: absolute; inset: 0; width: 100%; height: 100%; }
+.menu__liquido { fill: var(--liq); }
+.menu__espuma { fill: var(--esp); }
+.menu__burbujas { fill: var(--bur); fill-opacity: .55; }
+.menu.is-llena { background: var(--liq); }
+.menu.is-llena .menu__bebida { display: none; }
+.menu__dentro { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 3rem; padding: 6rem var(--gutter) 3rem; }
 .menu nav { display: flex; flex-direction: column; gap: .2rem; }
 .menu nav a { font: 900 clamp(3rem, 15vw, 5rem)/1.08 var(--display); letter-spacing: -.03em; text-decoration: none; }
 .menu__tel { font-weight: 600; font-size: 1.25rem; text-decoration: none; }
